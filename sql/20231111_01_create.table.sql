@@ -27,14 +27,21 @@ CREATE TABLE Agence (
     FOREIGN KEY (Adresse_ID) REFERENCES Adresse(ID_Adresse)
 )ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Table Type
+CREATE TABLE Type (
+    ID_Type INT(11) PRIMARY KEY,
+    Nom VARCHAR(50) NOT NULL
+)ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- Table Immobilier
 CREATE TABLE Immobilier (
     ID_Immobilier INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    Agence_ID INT(11) NOT NULL,
-    Type VARCHAR(50) NOT NULL,
+    Agence_ID INT(11),
+    Type_ID INT(11),
     Prix DECIMAL(18, 2) NOT NULL,
     Description TEXT,
-    FOREIGN KEY (Agence_ID) REFERENCES Agence(ID_Agence)
+    FOREIGN KEY (Agence_ID) REFERENCES Agence(ID_Agence),
+    FOREIGN KEY (Type_ID) REFERENCES Type(ID_Type)
 )ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Table Favoris
@@ -49,26 +56,26 @@ CREATE TABLE Favoris (
 -- Table Appartement
 CREATE TABLE Appartement (
     ID_Appartement INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    Immobilier_ID INT(11),
+    Type_ID INT(11),
     Surface DECIMAL(10, 2) NOT NULL,
-    NombrePieces INT NOT NULL,
-    FOREIGN KEY (Immobilier_ID) REFERENCES Immobilier(ID_Immobilier)
+    NombrePieces INT(11) NOT NULL,
+    FOREIGN KEY (Type_ID) REFERENCES Type(ID_Type)
 )ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Table Maison
 CREATE TABLE Maison (
     ID_Maison INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    Immobilier_ID INT(11),
+    Type_ID INT(11),
     Surface DECIMAL(10, 2) NOT NULL,
-    NombrePieces INT NOT NULL,
-    FOREIGN KEY (Immobilier_ID) REFERENCES Immobilier(ID_Immobilier)
+    NombrePieces INT(11) NOT NULL,
+    FOREIGN KEY (Type_ID) REFERENCES Type(ID_Type)
 )ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Table Terrain
 CREATE TABLE Terrain (
     ID_Terrain INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    Immobilier_ID INT(11),
+    Type_ID INT(11),
     Superficie DECIMAL(10, 2) NOT NULL,
     Constructible BOOLEAN NOT NULL,
-    FOREIGN KEY (Immobilier_ID) REFERENCES Immobilier(ID_Immobilier)
+    FOREIGN KEY (Type_ID) REFERENCES Type(ID_Type)
 )ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
