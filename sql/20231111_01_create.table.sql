@@ -1,12 +1,15 @@
 USE ImmoProjet;
 
 -- Table Utilisateur
-CREATE TABLE Utilisateur (
-    ID_Utilisateur INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    Nom VARCHAR(100) NOT NULL,
-    Prenom VARCHAR(100) NOT NULL,
-    Email VARCHAR(254) UNIQUE NOT NULL,
-    MotDePasse VARCHAR(60) NOT NULL
+CREATE TABLE `utilisateur` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `nom` VARCHAR(100) NOT NULL,
+    `prenom` VARCHAR(100) NOT NULL,
+    `email` VARCHAR(254) UNIQUE NOT NULL,
+    `motDePasse` VARCHAR(60) NOT NULL
+    `favoris_id` int(11) NOT NULL,
+    CONSTRAINT `utilisateur_FK` FOREIGN KEY (`spectacle_id`) REFERENCES `Spectacle`(`id`),
+    PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Table Adresse
