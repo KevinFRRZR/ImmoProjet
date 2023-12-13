@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 require_once 'BaseModel';
+require_once 'Favoris';
 
 class Utilisateur extends BaseModel
 {
@@ -12,20 +13,20 @@ class Utilisateur extends BaseModel
      * 
      * @var integer | null 
      */
-    public ?int $ID_Utilisateur = null;
+    public ?int $id = null;
 
 
     /**
      * firstname field 
      * @var string|null 
      */
-    public ?string $firstname = null;
+    public ?string $nom = null;
 
     /**
      * lastname field 
      * @var string|null 
      */
-    public ?string $lastname = null;
+    public ?string $prenom = null;
 
     /** 
      * email field 
@@ -37,25 +38,22 @@ class Utilisateur extends BaseModel
      * password field 
      * @var string|null 
      */
-    public ?string $password = null;
+    public ?string $motDePasse = null;
 
     /**
-     * current user role 
-     * 
-     * @param string $email
-     * @return Favoris|null
+     * Favoris field 
+     * @var Favoris|null
      */
-    protected ?Favoris $favoris = null;
+    public ?Favoris $favoris_id = null;
 
     /** 
-     * Fetch all userss
-     * 
+     * Fetch all users
      * @return array 
      **/
     public static function fetchAll(): array
     {
 
-        $statement = self::prepareStatement("select * from users");
+        $statement = self::prepareStatement("select * from utilisateur");
         if (self::executeStatement($statement)) {
             if (self::setFetchModeStatement($statement)) {
                 return $statement->fetchAll();
@@ -65,11 +63,11 @@ class Utilisateur extends BaseModel
 
     /**
      * 
-     *Try to fetch a users by its email 
+     * Try to fetch a users by its email 
      * @param string $email 
-     * @return User|false 
+     * @return Utilisateur|false 
      */
-    public static function fetchByEmail(string $email): User|false
+    public static function fetchByEmail(string $email): Utilisateur|false
     {
         $statement = self::prepareStatement("select * from users where email = :email");
 
@@ -83,9 +81,9 @@ class Utilisateur extends BaseModel
     /**
      * Get the current  user
      * 
-     * @return User|null
+     * @return Utilisateur|null
      */
-    public static function current(): User|null
+    public static function current(): Utilisateur|null
     {
         static $current = null;
         if (!$current) {
@@ -96,20 +94,6 @@ class Utilisateur extends BaseModel
             }
         }
         return $current;
-    }
-
-    /**
-     * Get user role
-     *
-     * @return Role|null
-     */
-    public function getRole(): Role|null
-    {
-        if (!$this->role) {
-            $this->role = $this->roleId ? Role::fetchById($this->roleId) : null;
-        }
-
-        return $this->role;
     }
 
     public function modifyPassword(string $Newpassword): bool

@@ -1,7 +1,6 @@
 <?php
 require_once 'BaseModel';
-
-class Agence extends BaseModel
+class Terrain extends BaseModel
 {
     /**
      * Primary key 
@@ -17,22 +16,16 @@ class Agence extends BaseModel
     public ?string $nom = null;
 
     /**
-     * numeroDeTelephone field 
-     * @var string|null 
+     * Superficie field 
+     * @var float|null 
      */
-    public ?string $numeroDeTelephone = null;
+    public ?float $superficie = null;
 
     /**
-     * email field 
-     * @var string|null 
+     * constructible field 
+     * @var bool|null 
      */
-    public ?string $email = null;
-
-    /**
-     * adresse field 
-     * @var string|null 
-     */
-    public ?string $adresse = null;
+    public ?bool $constructible = null;
 
     /**
      * bien_id field 
