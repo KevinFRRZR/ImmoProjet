@@ -52,7 +52,6 @@ class Utilisateur extends BaseModel
      **/
     public static function fetchAll(): array
     {
-
         $statement = self::prepareStatement("select * from utilisateur");
         if (self::executeStatement($statement)) {
             if (self::setFetchModeStatement($statement)) {

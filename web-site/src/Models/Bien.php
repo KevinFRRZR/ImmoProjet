@@ -51,4 +51,13 @@ class Bien extends BaseModel
      * @var integer | null 
      */
     public ?int $agence_id = null;
+
+    public static function fetchAll(): array{
+        $statement = self::prepareStatement("select * from utilisateur");
+        if (self::executeStatement($statement)) {
+            if (self::setFetchModeStatement($statement)) {
+                return $statement->fetchAll();
+            }
+        }
+    }
 }

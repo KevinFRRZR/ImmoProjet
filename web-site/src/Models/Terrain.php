@@ -32,4 +32,15 @@ class Terrain extends BaseModel
      * @var integer|null 
      */
     public ?int $bien_id = null;
+
+    public static function fetchById(int $id): Terrain|false
+    {
+        $statement = self::prepareStatement("select * from terrain where id = :id");
+
+        if (self::executeStatement($statement, [":id" => $id])) {
+            if (self::setFetchModeStatement($statement)) {
+                return $statement->fetch();
+            }
+        }
+    }
 }
