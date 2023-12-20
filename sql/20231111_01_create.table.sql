@@ -115,6 +115,8 @@ INSERT INTO bien (prix, logement_id, terrain_id, description, agence_id) VALUES
 INSERT INTO logement (nom, surface, nombreDePiece, bien_id) VALUES
     ('Maison familiale', 150.00, 5, 1),
     ('Appartement moderne', 80.00, 3, 3);
+    ('Appartement moderne', 80.00, 3, 3);
+    ('Maison', 80.00, 3, 3);
 
 -- Ajout d'exemples de terrains
 INSERT INTO terrain (nom, superficie, constructible, bien_id) VALUES

@@ -1,6 +1,7 @@
 <?php
 require_once 'src/Controllers/IndexController.php';
-
+if (isset($bien_id)) {
+}
 $indexController = new IndexController();
 $biens = $indexController->getBien();
 
@@ -29,15 +30,15 @@ $biens = $indexController->getBien();
                     </li>
                     <li class="nav-item">
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Résidentiel</a>
+                        <a class="nav-link" href="#">Résidentiel</a>
                     </li>
-                    <a class="nav-link" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/profile">Profile</a>
+                    <a class="nav-link" href="#">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
                     </li>
                 </ul>
         </nav>

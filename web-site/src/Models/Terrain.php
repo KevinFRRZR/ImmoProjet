@@ -1,5 +1,5 @@
 <?php
-require_once 'BaseModel';
+require_once 'src/Models/BaseModel.php';
 class Terrain extends BaseModel
 {
     /**
@@ -33,11 +33,11 @@ class Terrain extends BaseModel
      */
     public ?int $bien_id = null;
 
-    public static function fetchById(int $id): Terrain|false
+    public static function fetchById(int $bien_id): Terrain|false
     {
-        $statement = self::prepareStatement("select * from terrain where id = :id");
+        $statement = self::prepareStatement("select * from terrain where bien_id = :bien_id");
 
-        if (self::executeStatement($statement, [":id" => $id])) {
+        if (self::executeStatement($statement, [":bien_id" => $bien_id])) {
             if (self::setFetchModeStatement($statement)) {
                 return $statement->fetch();
             }

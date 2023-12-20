@@ -1,5 +1,5 @@
 <?php
-require_once 'BaseModel';
+require_once 'src/Models/BaseModel.php';
 
 class Bien extends BaseModel
 {
@@ -52,8 +52,9 @@ class Bien extends BaseModel
      */
     public ?int $agence_id = null;
 
-    public static function fetchAll(): array{
-        $statement = self::prepareStatement("select * from utilisateur");
+    public static function fetchAll(): array
+    {
+        $statement = self::prepareStatement("select * from bien");
         if (self::executeStatement($statement)) {
             if (self::setFetchModeStatement($statement)) {
                 return $statement->fetchAll();

@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-require_once "../../constantes.php";
-
-use PDO;
+require_once "config/const.php";
 
 class Database
 {
@@ -19,15 +17,14 @@ class Database
 
         if ($pdo === null) {
             try {
-                $dsn = 'mysql:host=' . getenv('DB_HOST') . ';dbname=' . getenv('DB_NAME') . ';charset=' . getenv('DB_CHARSET');
+                $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=' . DB_CHARSET;
 
                 $options = [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                     PDO::ATTR_EMULATE_PREPARES => false,
                 ];
-
-                $pdo = new PDO($dsn, getenv('DB_USER'), getenv('DB_PASSWORD'), $options);
+                $pdo = new PDO($dsn, DB_USER, DB_PASSWORD, $options);
             } catch (\Throwable $th) {
                 // @todo Add log entry
                 die("Can't connect to database");

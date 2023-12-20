@@ -1,5 +1,5 @@
 <?php
-require_once 'BaseModel';
+require_once 'src/Models/BaseModel.php';
 class Logement extends BaseModel
 {
     /**
@@ -14,6 +14,12 @@ class Logement extends BaseModel
      * @var string|null 
      */
     public ?string $nom = null;
+
+    /**
+     * name field 
+     * @var string|null 
+     */
+    public ?string $description = null;
 
     /**
      * Surface field 
@@ -34,11 +40,11 @@ class Logement extends BaseModel
      */
     public ?int $bien_id = null;
 
-    public static function fetchById(int $id): Logement|false
+    public static function fetchById(int $bien_id): Logement|false
     {
-        $statement = self::prepareStatement("select * from logement where id = :id");
+        $statement = self::prepareStatement("select * from logement where bien_id = :bien_id");
 
-        if (self::executeStatement($statement, [":id" => $id])) {
+        if (self::executeStatement($statement, [":bien_id" => $bien_id])) {
             if (self::setFetchModeStatement($statement)) {
                 return $statement->fetch();
             }
