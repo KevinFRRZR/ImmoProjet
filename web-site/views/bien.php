@@ -1,9 +1,9 @@
 <?php
 require_once 'src/Controllers/IndexController.php';
-if (isset($bien_id)) {
+if (isset($bien_id) && isset($logement)) {
+    
 }
-$indexController = new IndexController();
-$biens = $indexController->getBien();
+
 
 ?>
 <!DOCTYPE html>

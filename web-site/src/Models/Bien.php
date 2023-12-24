@@ -61,4 +61,13 @@ class Bien extends BaseModel
             }
         }
     }
+    public static function fetchById(): Bien
+    {
+        $statement = self::prepareStatement("select * from bien where id = :idbien");
+        if (self::executeStatement($statement)) {
+            if (self::setFetchModeStatement($statement)) {
+                return $statement->fetch();
+            }
+        }
+    }
 }

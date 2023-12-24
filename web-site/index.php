@@ -68,7 +68,7 @@ $biens = $indexController->getBien();
                             <h2><?= $logement == null ? $terrain->nom : $logement->nom ?></h2>
                             <img src="img/<?= $key ?>.jpg" alt="bien" width="100vw">
                             <p><?= $bien->description ?></p>
-                            <a href="views/bien.php?<?= $bien->id ?>" class="btn btn-primary">En savoir plus</a>
+                            <a href="views/bien.php?bien=<?= $bien->id ?>&logement=<?= $logement == null ? false : true ?>" class="btn btn-primary">En savoir plus</a>
                         </div>
                     <?php } ?>
                 </div>
